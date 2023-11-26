@@ -1,4 +1,4 @@
-import "./NoteFoundPage.scss"
+import "./NotFoundPage.scss"
 
 function NotFoundPage() {
 

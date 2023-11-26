@@ -20,6 +20,7 @@ function HomePage() {
   return (
     <div className='home-page'>
       <h1 className='home-page__title'>Faux Gallery</h1>
+      {/* <p>reee</p> */}
       <h2 className='home-page__sub-text'> Click the button to generate some awesome AI art</h2>
       <button onClick={handleOnClick} className="home-page__button">Get Images</button>
       {randomImage &&

@@ -14,8 +14,8 @@ function App() {
     <div className="app">
       <Header />
       <Routes>
-        <Route path='/' element={<Navigate to='/home' />}></Route>
-        <Route path='/home' element={<HomePage />}></Route> 
+        <Route path='/' element={<Navigate to='/home' />} />
+        <Route path='/home' element={<HomePage />} /> 
         <Route path='/creators' element={<CreatorsPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

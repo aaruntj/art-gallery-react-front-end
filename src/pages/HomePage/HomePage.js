@@ -11,10 +11,16 @@ function HomePage() {
   const handleOnClick = () => {
     let num = Math.floor(Math.random()*18)
     console.log("random number =",num)
-    axios.get("http://localhost:8080/images").then(res => {
-      setRandomImage(res.data[num].image)
-      console.log(res.data)
-    })
+    async function getRandomImage() {
+      try {
+        const response = await axios.get("http://localhost:8080/images")
+        console.log(response.data)
+        setRandomImage(response.data[num].image)
+      } catch(error) {
+        console.log("error: ",error)
+      }
+    }
+    getRandomImage()
   }
   // console.log(num)
   return (

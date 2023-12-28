@@ -2,26 +2,32 @@ import './CreatorsPage.scss'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function CreatersPage() {
+function CreatorsPage() {
 
-const [chrisImage, setChrisImage] = useState(null)
-const [matthewImage, setMatthewImage] = useState(null)
-const [aarunImage, setAarunImage] = useState(null)
+    const [chrisImage, setChrisImage] = useState(null)
+    const [matthewImage, setMatthewImage] = useState(null)
+    const [aarunImage, setAarunImage] = useState(null)
 
-useEffect(()=>{
-    axios.get("http://localhost:8080/profiles").then(res =>{
-        setChrisImage(res.data[0].profileImage)
-        setMatthewImage(res.data[1].profileImage)
-        setAarunImage(res.data[2].profileImage)
-    })
-},[])
+    useEffect(() => {
+        async function getCreators() {
+            try {
+                const response = await axios.get("http://localhost:8080/profiles")
+                console.log(response.data)
+                setChrisImage(response.data[0].profileImage)
+                setMatthewImage(response.data[1].profileImage)
+                setAarunImage(response.data[2].profileImage)
+            } catch(error) {
+                console.log("error: ",error)
+            }
+        }
+        getCreators()
+    }, [])
 
-if(chrisImage === null || matthewImage ===null || aarunImage ===null){
-    return <h1>Loading...</h1>
-}
+    if( chrisImage === null || matthewImage === null || aarunImage === null ){
+        return <h1>Loading...</h1>
+    }
 
     return (
-        <>
         <div className='creators-page'> 
             <h1 className='creators-page__title'>Creators</h1>
             <div className='creators-page__container'>
@@ -45,9 +51,7 @@ if(chrisImage === null || matthewImage ===null || aarunImage ===null){
                 </div>
             </div>
         </div>
-       
-        </>
     )
 }
 
-export default CreatersPage
+export default CreatorsPage
